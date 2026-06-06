@@ -72,9 +72,10 @@ def plot(result_list: list[Result]) -> None:
     logical_error_without_herald_std = []
     for result in result_list:
         num_sample = result.simulation_config.num_sample
+        num_round = result.simulation_config.rounds
         if result.num_error_with_herald > 0:
             distance_with_herald.append(result.simulation_config.distance)
-            lp = result.num_error_with_herald / num_sample
+            lp = 1 - (1 - result.num_error_with_herald / num_sample)**(1/num_round)
             logical_error_with_herald.append(lp)
             logical_error_with_herald_std.append(
                 np.sqrt(lp * (1 - lp) / np.sqrt(num_sample))
@@ -82,7 +83,7 @@ def plot(result_list: list[Result]) -> None:
 
         if result.num_error_without_herald > 0:
             distance_without_herald.append(result.simulation_config.distance)
-            lp = result.num_error_without_herald / num_sample
+            lp = 1 - (1 - result.num_error_without_herald / num_sample)**(1/num_round)
             logical_error_without_herald.append(lp)
             logical_error_without_herald_std.append(
                 np.sqrt(lp * (1 - lp) / np.sqrt(num_sample))
@@ -98,7 +99,7 @@ def plot(result_list: list[Result]) -> None:
     )
 
     plt.xlabel("code distance")
-    plt.ylabel("logical error rate")
+    plt.ylabel("logical error rate per round")
     plt.yscale("log")
 
     fit_d = np.array([1, 15])
@@ -135,6 +136,7 @@ def plot(result_list: list[Result]) -> None:
     if not os.path.exists("fig"):
         os.mkdir("fig")
     plt.savefig("./fig/result.pdf")
+    plt.savefig("./fig/result.png")
     plt.show()
 
 
