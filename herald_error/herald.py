@@ -10,8 +10,8 @@ def sampling_cx_error_list(
     num_sample: int,
     count_cx: int,
     herald_rate: float,
-    error_rate_with_herald: float,
-    error_rate_without_herald: float,
+    error_rate_heralded: float,
+    error_rate_unheralded: float,
     seed: int = None,
 ) -> list[float]:
     """Sample and aggregate CX error-probability patterns.
@@ -24,8 +24,8 @@ def sampling_cx_error_list(
         num_sample: Number of shots to sample.
         count_cx: Number of CX locations in the circuit.
         herald_rate: Probability that each CX location is heralded.
-        error_rate_with_herald: Error probability assigned to heralded CXs.
-        error_rate_without_herald: Error probability assigned to unheralded CXs.
+        error_rate_heralded: Error probability assigned to heralded CXs.
+        error_rate_unheralded: Error probability assigned to unheralded CXs.
         seed: Optional random seed for sampling.
 
     Returns:
@@ -44,8 +44,8 @@ def sampling_cx_error_list(
     herald_pattern_count_list_sorted = herald_pattern_count_list[order]
     herald_pattern_prob_list_sorted = np.where(
         herald_pattern_flag_list_sorted,
-        error_rate_with_herald,
-        error_rate_without_herald,
+        error_rate_heralded,
+        error_rate_unheralded,
     )
     assert (
         np.sum(herald_pattern_count_list_sorted) == num_sample
@@ -70,8 +70,8 @@ def get_unheralded_dem(
 
     # calculate average error rate
     average_error_rate = (
-        config.herald_rate * config.error_rate_with_herald
-        + (1 - config.herald_rate) * config.error_rate_without_herald
+        config.herald_rate * config.error_rate_heralded
+        + (1 - config.herald_rate) * config.error_rate_unheralded
     )
 
     # add uniform error rates on all the CX gates

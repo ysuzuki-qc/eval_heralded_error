@@ -11,8 +11,8 @@ class SimulationConfig:
         rounds: Number of syndrome-extraction rounds.
         basis: Logical memory basis, either ``"x"`` or ``"z"``.
         herald_rate: Probability that a CX location is heralded.
-        error_rate_with_herald: CX error probability for heralded locations.
-        error_rate_without_herald: CX error probability for unheralded locations.
+        error_rate_heralded: CX error probability for heralded locations.
+        error_rate_unheralded: CX error probability for unheralded locations.
         error_before_measurement: Measurement flip probability before measuring.
         error_after_measurement: Reset flip probability after measurement/reset.
         before_round_data_depolarization: Data-qubit depolarization probability
@@ -26,8 +26,8 @@ class SimulationConfig:
     rounds: int
     basis: str
     herald_rate: float
-    error_rate_with_herald: float
-    error_rate_without_herald: float
+    error_rate_heralded: float
+    error_rate_unheralded: float
     error_before_measurement: float
     error_after_measurement: float
     before_round_data_depolarization: float

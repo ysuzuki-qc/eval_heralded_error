@@ -4,8 +4,8 @@ This software will simulate circuit-level surface codes, where each CX gate is a
 
 We provide three parameters for CX gates as follows
 - `herald_rate`: heralding probability.
-- `error_rate_with_herald`: depolarizing rate when herlading signal is observed
-- `error_rate_without_herald`: depolarizing rate when heralding signal is not observed
+- `error_rate_heralded`: depolarizing rate when herlading signal is observed
+- `error_rate_unheralded`: depolarizing rate when heralding signal is not observed
 
 The evaluation of logical error rates are performed as follows.
 
@@ -23,8 +23,8 @@ config = SimulationConfig(
     rounds=d,
     basis=basis,
     herald_rate=p_herald,
-    error_rate_with_herald=p_error_with_herald,
-    error_rate_without_herald=p_error_without_herald,
+    error_rate_heralded=p_error_with_herald,
+    error_rate_unheralded=p_error_without_herald,
     error_before_measurement=p_meas / 2,
     error_after_measurement=p_meas / 2,
     before_round_data_depolarization=p_idle,

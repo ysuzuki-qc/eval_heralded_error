@@ -223,8 +223,8 @@ def run(config: SimulationConfig, use_tqdm: bool) -> Result:
         num_sample=config.num_sample,
         count_cx=cnot_count,
         herald_rate=config.herald_rate,
-        error_rate_with_herald=config.error_rate_with_herald,
-        error_rate_without_herald=config.error_rate_without_herald,
+        error_rate_heralded=config.error_rate_heralded,
+        error_rate_unheralded=config.error_rate_unheralded,
         seed=seed_herald_sample,
     )
     error_pattern_seed = random_state.randint(0, 2**31, size=len(error_pattern_list))
