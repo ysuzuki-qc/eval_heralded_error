@@ -15,25 +15,31 @@ The evaluation of logical error rates are performed as follows.
 4. Estimate logical observable flip using the heralded signals (i.e., compiling DEM from the sampled circuit)
 5. Estimate logical observable flip without using the heralded signals (i.e., DEM is compiled from circuits assuming averaged error rates)
 
-The configuration of simulation setting is as follows.
+To avoid compling the same noisy circuits to DEM multiple times, we bundle error etimations for the same pattern of heralding signals. This significantly reduces the calculation time when a heralding rate is small compared to the number of CXs.
+
+
+## `run.py`
+Evaluate the count of logical errors with and without using heralding signals in error estimation for several code distances. The configuration of simulation setting is as follows.
 ```python
 config = SimulationConfig(
-    num_sample=N,
-    distance=d,
-    rounds=d,
-    basis=basis,
-    herald_rate=p_herald,
-    error_rate_heralded=p_error_with_herald,
-    error_rate_unheralded=p_error_without_herald,
-    error_before_measurement=p_meas / 2,
-    error_after_measurement=p_meas / 2,
-    before_round_data_depolarization=p_idle,
-    num_workers=num_worker,
-    seed=seed,
+    num_sample=100000,
+    distance=5,
+    rounds=5,
+    basis="z",
+    herald_rate=0.01,
+    error_rate_heralded=0.5,
+    error_rate_unheralded=0.001,
+    error_before_measurement=0.001,
+    error_after_measurement=0.001,
+    before_round_data_depolarization=0.001,
+    num_workers=8,
+    seed=42,
 )
 ```
 
-Plot of logical error rates to code distance with analysis of Lambda.
+## `plot.py`
+Plot logical error rates to code distance per round. Also, we fit the function with `p_L = a * Lambda^{-(d-1)/2}` and extrapolate logical error lines to estimate required number of physical qubits.
 
-![figure](./fig/result.png)
+![figure](./figure/logical_error_rate.png)
 
+![figure](./figure/quop.png)
