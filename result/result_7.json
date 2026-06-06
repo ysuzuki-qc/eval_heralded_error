@@ -1,0 +1,18 @@
+{
+    "simulation_config": {
+        "num_sample": 1000,
+        "distance": 7,
+        "rounds": 7,
+        "basis": "z",
+        "herald_rate": 0.005,
+        "error_rate_with_herald": 0.5,
+        "error_rate_without_herald": 0.001,
+        "error_before_measurement": 0.0025,
+        "error_after_measurement": 0.0025,
+        "before_round_data_depolarization": 0.005,
+        "num_workers": 1,
+        "seed": 42
+    },
+    "num_error_with_herald": 0,
+    "num_error_without_herald": 3
+}
