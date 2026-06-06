@@ -48,7 +48,7 @@ def fit_logical_error_rate(
 
 
 def load(path: str) -> list[Result]:
-    file_list = glob.glob("./result/result_*.json")
+    file_list = glob.glob(f"{path}/result_*.json")
     result_list: list[Result] = []
     for file in file_list:
         with open(file) as fin:
@@ -101,7 +101,7 @@ def plot(result_list: list[Result]) -> None:
     plt.ylabel("logical error rate")
     plt.yscale("log")
 
-    fit_d = np.array([1,15])
+    fit_d = np.array([1, 15])
     plt.xlim(1, np.max(fit_d))
     plt.ylim(np.min(model(fit_d, p0_with_herald, lambda_with_herald)), 1e-1)
 
@@ -113,10 +113,7 @@ def plot(result_list: list[Result]) -> None:
         label=f"with herald p0={p0_with_herald:.2e} Lam={lambda_with_herald:.2e}",
     )
     plt.plot(
-        fit_d,
-        model(fit_d, p0_with_herald, lambda_with_herald),
-        color="blue",
-        alpha=0.5
+        fit_d, model(fit_d, p0_with_herald, lambda_with_herald), color="blue", alpha=0.5
     )
     plt.plot(
         distance_without_herald,
@@ -129,7 +126,7 @@ def plot(result_list: list[Result]) -> None:
         fit_d,
         model(fit_d, p0_without_herald, lambda_without_herald),
         color="red",
-        alpha=0.5
+        alpha=0.5,
     )
     plt.grid(which="major", color="black", linestyle="-", alpha=0.2)
     plt.grid(which="minor", color="black", linestyle="-", alpha=0.2)
