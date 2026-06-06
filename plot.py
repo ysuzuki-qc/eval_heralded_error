@@ -179,7 +179,7 @@ def plot(result_list: list[Result]) -> None:
     plt.xscale("log")
     plt.yscale("log")
     plt.xlabel("qubit count per surface code")
-    plt.ylabel("QuOP")
+    plt.ylabel("QuOP (reliable # of round-d logical operations)")
     plt.grid(which="major", color="black", linestyle="-", alpha=0.2)
     plt.grid(which="minor", color="black", linestyle="-", alpha=0.2)
     plt.legend()
