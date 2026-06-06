@@ -1,6 +1,6 @@
 {
     "simulation_config": {
-        "num_sample": 10000,
+        "num_sample": 100000,
         "distance": 7,
         "rounds": 7,
         "basis": "z",
@@ -13,6 +13,6 @@
         "num_workers": 12,
         "seed": 42
     },
-    "num_error_with_herald": 7,
-    "num_error_without_herald": 29
+    "num_error_with_herald": 81,
+    "num_error_without_herald": 307
 }
