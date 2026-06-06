@@ -1,6 +1,6 @@
 {
     "simulation_config": {
-        "num_sample": 1000,
+        "num_sample": 10000,
         "distance": 5,
         "rounds": 5,
         "basis": "z",
@@ -10,9 +10,9 @@
         "error_before_measurement": 0.0025,
         "error_after_measurement": 0.0025,
         "before_round_data_depolarization": 0.005,
-        "num_workers": 1,
+        "num_workers": 12,
         "seed": 42
     },
-    "num_error_with_herald": 2,
-    "num_error_without_herald": 7
+    "num_error_with_herald": 24,
+    "num_error_without_herald": 55
 }

@@ -12,7 +12,7 @@ def main() -> None:
         os.mkdir("result")
     # create config
     p = 5e-3
-    N = 10000
+    N = 100000
     basis = "z"
     p_meas = p
     p_idle = p
